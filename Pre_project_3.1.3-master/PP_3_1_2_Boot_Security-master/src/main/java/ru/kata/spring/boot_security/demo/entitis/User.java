@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo.entitis;
 
 import net.bytebuddy.build.ToStringPlugin;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -55,7 +57,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -63,6 +66,15 @@ public class User {
 
     public User() {
 
+    }
+
+    public User(String username, String lastName, int age, String email, String password, List<Role> roles) {
+        this.username = username;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
