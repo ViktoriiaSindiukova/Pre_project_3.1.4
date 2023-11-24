@@ -19,19 +19,16 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
 
     @Override
-    @Transactional
     public void saveRole(Role role) {
         roleRepository.save(role);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Role getRoleById(int id) {
         return roleRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Role not found"));
     }

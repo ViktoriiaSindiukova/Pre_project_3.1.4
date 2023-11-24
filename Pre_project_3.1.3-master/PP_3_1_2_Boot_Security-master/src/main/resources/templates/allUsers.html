@@ -259,24 +259,23 @@
                                     <form th:method="POST" th:action="@{/admin}" th:object="${newUser}">
                                         <div class="form-group">
                                             <label for="nameNew"><b>Name</b></label>
-                                            <input th:name="username" type="text" class="form-control" id="nameNew"/>
+                                            <input th:name="username" th:value="*{username}" type="text" class="form-control" id="nameNew"/>
                                             <br>
 
                                             <label for="lastNameNew"><b>Last name</b></label>
-                                            <input th:name="lastName" type="text" class="form-control"
-                                                   id="lastNameNew"/>
+                                            <input th:name="lastName" th:value="*{lastName}" type="text" class="form-control" id="lastNameNew"/>
                                             <br>
 
                                             <label for="ageNew"><b>Age</b></label>
-                                            <input th:name="age" type="text" class="form-control" id="ageNew"/>
+                                            <input th:name="age" th:value="*{age}" type="text" class="form-control" id="ageNew"/>
                                             <br>
 
                                             <label for="emailNew"><b>Email</b></label>
-                                            <input th:name="email" type="text" class="form-control" id="emailNew"/>
+                                            <input th:name="email" th:value="*{email}" type="text" class="form-control" id="emailNew"/>
                                             <br>
 
                                             <label for="passwordNew"><b>Password</b></label>
-                                            <input th:name="password" type="text" class="form-control"
+                                            <input th:name="password" th:value="*{password}" type="text" class="form-control"
                                                    id="passwordNew"/>
                                             <br>
 

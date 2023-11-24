@@ -68,7 +68,8 @@ public class User {
 
     }
 
-    public User(String username, String lastName, int age, String email, String password, List<Role> roles) {
+    public User(Long id, String username, String lastName, int age, String email, String password, List<Role> roles) {
+        this.id = id;
         this.username = username;
         this.lastName = lastName;
         this.age = age;
@@ -135,5 +136,15 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

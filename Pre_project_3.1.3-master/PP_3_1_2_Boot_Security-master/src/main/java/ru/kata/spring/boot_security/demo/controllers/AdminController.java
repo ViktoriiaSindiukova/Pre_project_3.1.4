@@ -61,7 +61,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public String saveUser(@ModelAttribute("newUser") @Valid User newUser, BindingResult bindingResult) {
+    public String saveUser(@ModelAttribute("newUser") User newUser, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             StringBuilder errorMessage = new StringBuilder();

@@ -13,12 +13,12 @@ import ru.kata.spring.boot_security.demo.security.UserDetailService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserDetailService userService;
+    private final UserDetailService userDetailService;
     private final SuccessUserHandler successUserHandler;
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailService userService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailService userDetailService) {
         this.successUserHandler = successUserHandler;
-        this.userService = userService;
+        this.userDetailService = userDetailService;
     }
 
     @Override
@@ -26,10 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/index")
                 .permitAll()
-                .antMatchers("/admin/**")
-                .hasRole("ADMIN")
-                .antMatchers("/user")
-                .hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()
                 .successHandler(successUserHandler)
@@ -43,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userService);
+        authenticationProvider.setUserDetailsService(userDetailService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
         return authenticationProvider;
